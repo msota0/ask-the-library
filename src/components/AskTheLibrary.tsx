@@ -8,19 +8,105 @@ type ResponseType = {
 };
 
 const RESPONSES: ResponseType[] = [
-  { text: "You’ve opened enough tabs. Close three, then begin.", helper: "A quieter start often works better." },
-  { text: "The answer may not be obvious, but it is probably searchable.", helper: "Try a library database before you spiral." },
-  { text: "Ask for help sooner than your pride suggests.", helper: "The library does not judge." },
-  { text: "Reply hazy. Hydrate first.", helper: "Then try again." },
-  { text: "You do not need inspiration. You need a smaller first step.", helper: "Start small." },
-  { text: "There is wisdom in the quiet floor today.", helper: "Go there." },
-  { text: "The library suspects you already know the answer.", helper: "You just need permission." },
+  // --- Grounded encouragement ---
+  { 
+    text: "Take a deep breath. You are doing better than you think.", 
+    helper: "Start with one small thing." 
+  },
+  { 
+    text: "Lock in. You are closer than it feels.", 
+    helper: "Just keep moving forward." 
+  },
+  { 
+    text: "You don’t need to solve everything right now.", 
+    helper: "Do the next step." 
+  },
+  { 
+    text: "It feels overwhelming because it matters.", 
+    helper: "That’s not a bad thing." 
+  },
+  { 
+    text: "You’ve handled harder days than this.", 
+    helper: "You can handle this one too." 
+  },
+  { 
+    text: "Pause. Breathe. Then begin again.", 
+    helper: "You’re allowed to reset." 
+  },
+  { 
+    text: "Progress counts, even if it’s slow.", 
+    helper: "Keep going." 
+  },
+  { 
+    text: "You are not behind. You are in the process.", 
+    helper: "Stay with it." 
+  },
+  { 
+    text: "Finish one thing. Then the next.", 
+    helper: "Momentum builds quietly." 
+  },
+  { 
+    text: "You’ve come too far to doubt yourself now.", 
+    helper: "Trust your work." 
+  },
+  { 
+    text: "This moment will pass. Your effort stays.", 
+    helper: "Keep showing up." 
+  },
+
+  // --- Library / whimsical encouragement ---
+  { 
+    text: "The library believes in your ability to finish this.", 
+    helper: "Find your spot and begin." 
+  },
+  { 
+    text: "The quiet floors have seen worse weeks.", 
+    helper: "You’re going to get through this one." 
+  },
+  { 
+    text: "Somewhere in this building, focus is happening. You can join it.", 
+    helper: "Pick a seat and start." 
+  },
+  { 
+    text: "The stacks are not in a rush. Neither are you.", 
+    helper: "Steady is enough." 
+  },
+  { 
+    text: "The answer might not be obvious, but it is findable.", 
+    helper: "Try one search." 
+  },
+  { 
+    text: "There is a version of you finishing this. Stay with them.", 
+    helper: "You’re already on the way." 
+  },
+  { 
+    text: "The library has seen all-nighters, breakdowns, and breakthroughs.", 
+    helper: "Yours is just another story in progress." 
+  },
+  { 
+    text: "You don’t need perfect conditions. Just a place to begin.", 
+    helper: "This is enough." 
+  },
+  { 
+    text: "Focus is not loud. It builds quietly.", 
+    helper: "Give it a few minutes." 
+  },
+  { 
+    text: "The work feels heavy because you’re carrying it seriously.", 
+    helper: "That’s a strength." 
+  },
+  { 
+    text: "Even a small session here counts.", 
+    helper: "Show up for it." 
+  },
 ];
 
 const SUBTITLES = [
-  "Ask your question. The stacks are listening.",
-  "Not everything needs to be figured out alone.",
-  "A small oracle for scholarly uncertainty.",
+  "You’re doing more than you think.",
+  "Take a breath. You’re still in it.",
+  "A small reminder for a long week.",
+  "You don’t have to figure everything out at once.",
+  "The work is happening, even if it feels slow.",
 ];
 
 const LOADING_LINES = [
