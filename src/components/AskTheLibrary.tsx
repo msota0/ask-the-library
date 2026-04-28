@@ -195,18 +195,7 @@ export default function AskTheLibrary() {
 
         <div className="response">
           <AnimatePresence mode="wait">
-            {isConsulting ? (
-              <motion.div
-                key="loading"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3 }}
-              >
-                <p className="response-text response-text--loading">{loadingLine}</p>
-                <p className="response-helper">Do not rush the old magic.</p>
-              </motion.div>
-            ) : response ? (
+            {response ? (
               <motion.div
                 key={response.text}
                 initial={{ opacity: 0, y: 14 }}
@@ -215,7 +204,6 @@ export default function AskTheLibrary() {
                 transition={{ duration: 0.35 }}
               >
                 <p className="response-text">“{response.text}”</p>
-                {/* <p className="response-helper">{response.helper}</p> */}
               </motion.div>
             ) : (
               <motion.p
