@@ -1,5 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useMemo, useState, useEffect } from "react";import { motion, AnimatePresence } from "framer-motion";
 import "./styles.css";
 
 type ResponseType = {
