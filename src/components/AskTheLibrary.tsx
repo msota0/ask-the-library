@@ -126,7 +126,7 @@ export default function AskTheLibrary() {
   const [response, setResponse] = useState<ResponseType | null>(null);
   const [isConsulting, setIsConsulting] = useState(false);
   const [loadingLine, setLoadingLine] = useState("");
-  const subtitle = useMemo(() => randomItem(SUBTITLES), []);
+  const subtitle = "A small reminder for a long week.";
   useEffect(() => {
   if (!response) return;
 
@@ -181,11 +181,11 @@ export default function AskTheLibrary() {
         >
           {/* 👇 NEW: text inside orb */}
           <div className="orb-content">
-            {isConsulting ? (
-              <span className="orb-text">{loadingLine}</span>
-            ) : response ? (
+            {!isConsulting && response && (
               <span className="orb-text">{response.helper}</span>
-            ) : (
+            )}
+
+            {!isConsulting && !response && (
               <span className="orb-text">Tap for good vibes</span>
             )}
           </div>
@@ -195,7 +195,17 @@ export default function AskTheLibrary() {
 
         <div className="response">
           <AnimatePresence mode="wait">
-            {isConsulting ? null : response ? (
+            {isConsulting ? (
+              <motion.div
+                key="loading"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="response-text response-text--loading">{loadingLine}</p>
+              </motion.div>
+            ) : response ? (
               <motion.div
                 key={response.text}
                 initial={{ opacity: 0, y: 14 }}
@@ -204,6 +214,7 @@ export default function AskTheLibrary() {
                 transition={{ duration: 0.35 }}
               >
                 <p className="response-text">“{response.text}”</p>
+                {/* <p className="response-helper">{response.helper}</p> */}
               </motion.div>
             ) : (
               <motion.p
@@ -218,7 +229,6 @@ export default function AskTheLibrary() {
             )}
           </AnimatePresence>
         </div>
-
         {/* 
         <button className="button" onClick={handleAsk} disabled={isConsulting}>
           {response ? "Ask Again" : "Consult"}
