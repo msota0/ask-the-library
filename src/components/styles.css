@@ -46,9 +46,9 @@ body {
 }
 
 .orb {
-  width: 280px;
-  height: 280px;
-  margin: 0 auto 32px;
+  width: 360px;
+  height: 360px;
+  margin: 0 auto 36px;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
