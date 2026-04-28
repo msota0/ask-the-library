@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./styles.css";
 
@@ -6,6 +6,7 @@ type ResponseType = {
   text: string;
   helper: string;
 };
+
 
 const RESPONSES: ResponseType[] = [
   // --- Grounded encouragement ---
@@ -121,11 +122,21 @@ function randomItem<T>(items: T[]): T {
   return items[Math.floor(Math.random() * items.length)];
 }
 
+
 export default function AskTheLibrary() {
   const [response, setResponse] = useState<ResponseType | null>(null);
   const [isConsulting, setIsConsulting] = useState(false);
   const [loadingLine, setLoadingLine] = useState("");
   const subtitle = useMemo(() => randomItem(SUBTITLES), []);
+  useEffect(() => {
+  if (!response) return;
+
+  const timer = setTimeout(() => {
+    setResponse(null);
+  }, 20000); // 30 seconds
+
+  return () => clearTimeout(timer);
+}, [response]);
 
   const handleAsk = () => {
     if (isConsulting) return;
@@ -145,7 +156,7 @@ export default function AskTheLibrary() {
   return (
     <div className="app">
       <div className="container">
-        <h1 className="title">Ask the Library</h1>
+        <h1 className="title">Tap for good vibes</h1>
         <p className="subtitle">{subtitle}</p>
 
         <motion.div
@@ -158,30 +169,28 @@ export default function AskTheLibrary() {
               ? {
                   scale: [1, 1.06, 1],
                   y: [0, -4, 0],
-                  filter: [
-                    "brightness(1) drop-shadow(0 0 12px rgba(99,102,241,0.25))",
-                    "brightness(1.12) drop-shadow(0 0 26px rgba(129,140,248,0.5))",
-                    "brightness(1) drop-shadow(0 0 12px rgba(99,102,241,0.25))",
-                  ],
                 }
               : {
                   y: [0, -6, 0],
                 }
           }
-          transition={
-            isConsulting
-              ? {
-                  duration: 1.6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-              : {
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-          }
+          transition={{
+            duration: isConsulting ? 1.6 : 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
+          {/* 👇 NEW: text inside orb */}
+          <div className="orb-content">
+            {isConsulting ? (
+              <span className="orb-text">{loadingLine}</span>
+            ) : response ? (
+              <span className="orb-text">{response.helper}</span>
+            ) : (
+              <span className="orb-text">Tap for good vibes</span>
+            )}
+          </div>
+
           {isConsulting && <div className="orb-ripple" />}
         </motion.div>
 
@@ -207,7 +216,7 @@ export default function AskTheLibrary() {
                 transition={{ duration: 0.35 }}
               >
                 <p className="response-text">“{response.text}”</p>
-                <p className="response-helper">{response.helper}</p>
+                {/* <p className="response-helper">{response.helper}</p> */}
               </motion.div>
             ) : (
               <motion.p
@@ -223,9 +232,11 @@ export default function AskTheLibrary() {
           </AnimatePresence>
         </div>
 
+        {/* 
         <button className="button" onClick={handleAsk} disabled={isConsulting}>
           {response ? "Ask Again" : "Consult"}
         </button>
+        */}
       </div>
     </div>
   );
