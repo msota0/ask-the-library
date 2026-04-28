@@ -195,7 +195,7 @@ export default function AskTheLibrary() {
 
         <div className="response">
           <AnimatePresence mode="wait">
-            {response ? (
+            {isConsulting ? null : response ? (
               <motion.div
                 key={response.text}
                 initial={{ opacity: 0, y: 14 }}
